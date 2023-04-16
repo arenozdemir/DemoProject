@@ -17,8 +17,8 @@ public class CameraController : MonoBehaviour
     {
         snappedOrtograficSize += Input.mouseScrollDelta.y;
         float zoomSpped = 10f;
-        snappedOrtograficSize = Mathf.Clamp(ortografiSize, maxDistance, maxDistance);
-        ortografiSize = Mathf.Lerp(ortografiSize, snappedOrtograficSize, Time.deltaTime*zoomSpped);
+        snappedOrtograficSize = Mathf.Clamp(snappedOrtograficSize, minDistance, maxDistance);
+        ortografiSize = Mathf.Lerp(ortografiSize, snappedOrtograficSize, Time.deltaTime * zoomSpped);
         
 
         virtualCamera.m_Lens.OrthographicSize = ortografiSize;
