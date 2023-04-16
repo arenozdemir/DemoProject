@@ -6,10 +6,11 @@ using Cinemachine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera virtualCamera;
-    float ortografiSize;
+    float ortografiSize = 7.5f;
     void Update()
     {
         ortografiSize += Input.mouseScrollDelta.y;
-        virtualCamera.m_Lens.OrthographicSize= ortografiSize;
+        virtualCamera.m_Lens.OrthographicSize = ortografiSize;
+      
     }
 }
