@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera virtualCamera;
     float ortografiSize = 7.5f;
-    [SerializeField] float minDistance, maxDistance;
+    [Range(4.5f, 10f)][SerializeField] float minDistance, maxDistance;
     float snappedOrtograficSize;
     private void Start()
     {
