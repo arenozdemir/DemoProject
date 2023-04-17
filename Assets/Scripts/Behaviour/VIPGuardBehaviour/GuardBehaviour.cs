@@ -8,7 +8,7 @@ public class GuardBehaviour : MonoBehaviour
     [SerializeField] private GameObject backDoor;
     [SerializeField] private GameObject bar;
 
-    public Node vipAiTree;
+    public Node vipGuardTree;
 
     public NavMeshAgent agent;
     public enum ActionState
@@ -27,7 +27,7 @@ public class GuardBehaviour : MonoBehaviour
     {
         if (treeStatus != Node.Status.SUCCESS)
         {
-            treeStatus = vipAiTree.Process();
+            treeStatus = vipGuardTree.Process();
         }
     }
 }

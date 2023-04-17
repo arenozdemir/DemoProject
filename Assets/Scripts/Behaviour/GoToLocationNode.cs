@@ -34,7 +34,7 @@ public class GoToLocationNode : Leaf
             vipBehaviour.state = ActionState.IDLE;
             return Node.Status.FAILURE;
         }
-        else if (distanceToTarget <= 1)
+        else if (distanceToTarget <= 1f)
         {
             animator.CrossFade("Standing W_Briefcase Idle", .2f);
             vipBehaviour.state = ActionState.IDLE;

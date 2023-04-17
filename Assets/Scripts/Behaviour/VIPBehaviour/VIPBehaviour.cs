@@ -4,9 +4,6 @@ using UnityEngine.AI;
 [System.Serializable]
 public class VIPBehaviour : MonoBehaviour
 {
-    [SerializeField] private GameObject backDoor;
-    [SerializeField] private GameObject bar;
-
     public Node vipAiTree;
     
     public NavMeshAgent agent;
