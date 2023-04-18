@@ -3,31 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class GuardBehaviour : MonoBehaviour
+public class GuardBehaviour : NPCBehaviour
 {
-    [SerializeField] private GameObject backDoor;
-    [SerializeField] private GameObject bar;
-
-    public Node vipGuardTree;
-
-    public NavMeshAgent agent;
-    public enum ActionState
-    {
-        IDLE,
-        WORKING
-    }
-    public ActionState state = ActionState.IDLE;
-
-    Node.Status treeStatus = Node.Status.RUNNING;
-    private void Awake()
-    {
-        agent = GetComponent<NavMeshAgent>();
-    }
-    void Update()
-    {
-        if (treeStatus != Node.Status.SUCCESS)
-        {
-            treeStatus = vipGuardTree.Process();
-        }
-    }
+    
 }
