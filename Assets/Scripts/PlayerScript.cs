@@ -9,7 +9,8 @@ using UnityEngine.InputSystem;
 public class PlayerScript : MonoBehaviour
 {
     [SerializeField] GameObject testObject;
-    
+    List<Signals> signals = new List<Signals>();
+
     [SerializeField]
     [Range(0, 15)] private float interactRange = 1f;
     
@@ -24,6 +25,21 @@ public class PlayerScript : MonoBehaviour
         playerNavMeshAgent = GetComponent<NavMeshAgent>();
 
         playerInput.FindAction("Interact").started += Interact;
+        playerInput.FindAction("Signals").started += Signals;
+        playerInput.FindAction("Signals").canceled += Signals;
+        
+    }
+    private void Start()
+    {
+        //Buraya dikkat
+        foreach (MonoBehaviour signal in FindObjectsOfType<MonoBehaviour>())
+        {
+            if (signal.TryGetComponent(out Signals signalComponent))
+            {
+                signals.Add(signalComponent);
+            }
+        }
+        signals.ForEach(x => x.Hide());
     }
     void Update()
     {
@@ -58,6 +74,18 @@ public class PlayerScript : MonoBehaviour
     private void Interact(InputAction.CallbackContext context)
     {
         EnvironmentDetecting();
+    }
+
+    private void Signals(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            signals.ForEach(x => x.Show());
+        }
+        else if (context.canceled)
+        {
+            signals.ForEach(x => x.Hide());
+        }
     }
     private void EnvironmentDetecting()
     {
