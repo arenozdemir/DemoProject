@@ -1,10 +1,13 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
-public class PlayerScript : MonoBehaviour
+public class PlayerScript : ObserverManager
 {
     [SerializeField] GameObject testObject;
+    [SerializeField] Animator animator;
+    
     List<Signals> signals = new List<Signals>();
 
     [SerializeField]
@@ -21,6 +24,10 @@ public class PlayerScript : MonoBehaviour
         playerNavMeshAgent = GetComponent<NavMeshAgent>();
 
         playerInput.FindAction("Interact").started += Interact;
+        playerInput.FindAction("Sneaking").started += Sneaking;
+        playerInput.FindAction("Sneaking").canceled += Sneaking;
+        playerInput.FindAction("Sneaking").performed += Sneaking;
+        
         playerInput.FindAction("Signals").started += Signals;
         playerInput.FindAction("Signals").canceled += Signals;
         
@@ -40,8 +47,17 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         MoveToPosition();
-        RotatePlayer();
     }
+    #region Sneaking
+    
+    private void Sneaking(InputAction.CallbackContext context)
+    {
+        if (context.started || context.performed)
+        {
+            NotifyObservers(PlayerActionsEnum.Sneaking);
+        }
+    }
+    #endregion
     #region moving
     private void MoveToPosition()
     {
@@ -119,3 +135,29 @@ public class PlayerScript : MonoBehaviour
     }
     public GameObject GetTestObject() => testObject;
 }
+//public static class AnimationSetter
+//{
+//    public delegate void AnimationState(PlayerScript player, AnimationState animation);
+//    public static AnimationState animationState;
+//    public enum States { idle, Walking, Running, Snake }
+    
+//    static AnimationState[] animations = { idle, Walking, Running, Snake };
+//    public static AnimationState GetFunction(States name) => animations[(int)name];
+//    public static void idle(PlayerScript player, AnimationState animation)
+//    {
+//        player.GetComponentInParent<Animator>().CrossFade("Standing W_Briefcase Idle", 0.03f);
+//    }
+//    public static void Walking(PlayerScript player, AnimationState animation)
+//    {
+//        player.GetComponentInParent<Animator>().CrossFade("Walking", 0.03f);
+//    }
+//    public static void Running(PlayerScript player, AnimationState animation)
+//    {
+//        //do something
+//    }
+//    public static void Snake(PlayerScript player, AnimationState animation)
+//    {
+//        //do something
+//    }
+    
+//}

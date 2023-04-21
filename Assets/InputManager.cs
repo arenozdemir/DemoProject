@@ -44,6 +44,15 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sneaking"",
+                    ""type"": ""Button"",
+                    ""id"": ""66f8ab2d-c540-4626-909f-b1479094ea6d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -68,6 +77,17 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""action"": ""Signals"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ba974317-de05-419b-803c-bb1ac2c85842"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sneaking"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -78,6 +98,7 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         m_PlayerActions = asset.FindActionMap("PlayerActions", throwIfNotFound: true);
         m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
         m_PlayerActions_Signals = m_PlayerActions.FindAction("Signals", throwIfNotFound: true);
+        m_PlayerActions_Sneaking = m_PlayerActions.FindAction("Sneaking", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -139,12 +160,14 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
     private IPlayerActionsActions m_PlayerActionsActionsCallbackInterface;
     private readonly InputAction m_PlayerActions_Interact;
     private readonly InputAction m_PlayerActions_Signals;
+    private readonly InputAction m_PlayerActions_Sneaking;
     public struct PlayerActionsActions
     {
         private @InputManager m_Wrapper;
         public PlayerActionsActions(@InputManager wrapper) { m_Wrapper = wrapper; }
         public InputAction @Interact => m_Wrapper.m_PlayerActions_Interact;
         public InputAction @Signals => m_Wrapper.m_PlayerActions_Signals;
+        public InputAction @Sneaking => m_Wrapper.m_PlayerActions_Sneaking;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -160,6 +183,9 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 @Signals.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSignals;
                 @Signals.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSignals;
                 @Signals.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSignals;
+                @Sneaking.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSneaking;
+                @Sneaking.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSneaking;
+                @Sneaking.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSneaking;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -170,6 +196,9 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 @Signals.started += instance.OnSignals;
                 @Signals.performed += instance.OnSignals;
                 @Signals.canceled += instance.OnSignals;
+                @Sneaking.started += instance.OnSneaking;
+                @Sneaking.performed += instance.OnSneaking;
+                @Sneaking.canceled += instance.OnSneaking;
             }
         }
     }
@@ -178,5 +207,6 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
     {
         void OnInteract(InputAction.CallbackContext context);
         void OnSignals(InputAction.CallbackContext context);
+        void OnSneaking(InputAction.CallbackContext context);
     }
 }
