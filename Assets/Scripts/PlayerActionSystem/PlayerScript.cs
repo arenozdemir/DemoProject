@@ -6,31 +6,30 @@ using UnityEngine.InputSystem;
 public class PlayerScript : ObserverManager
 {
     [SerializeField] GameObject testObject;
-    [SerializeField] Animator animator;
-    
+
     List<Signals> signals = new List<Signals>();
+
+    private NavMeshAgent playerNavMeshAgent;
 
     [SerializeField]
     [Range(0, 15)] private float interactRange = 1f;
     
-    NavMeshAgent playerNavMeshAgent;
     private InputManager playerInput;
-    
-    private bool isInteracted;
-    [SerializeField] LayerMask groundLayer;
     private void Awake()
     {
-        playerInput = new InputManager();
         playerNavMeshAgent = GetComponent<NavMeshAgent>();
+        playerInput = new InputManager();
 
         playerInput.FindAction("Interact").started += Interact;
+        
         playerInput.FindAction("Sneaking").started += Sneaking;
         playerInput.FindAction("Sneaking").canceled += Sneaking;
-        playerInput.FindAction("Sneaking").performed += Sneaking;
         
         playerInput.FindAction("Signals").started += Signals;
         playerInput.FindAction("Signals").canceled += Signals;
-        
+
+        playerInput.FindAction("Move").started += Move;
+        playerInput.FindAction("Move").canceled += Move;
     }
     private void Start()
     {
@@ -46,7 +45,7 @@ public class PlayerScript : ObserverManager
     }
     void Update()
     {
-        MoveToPosition();
+        RotatePlayer();
     }
     #region Sneaking
     
@@ -58,17 +57,13 @@ public class PlayerScript : ObserverManager
         }
     }
     #endregion
+    
     #region moving
-    private void MoveToPosition()
+    private void Move(InputAction.CallbackContext context)
     {
-        if (Mouse.current.rightButton.IsPressed())
+        if (context.started)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer)) 
-            {
-                playerNavMeshAgent.SetDestination(hit.point);
-            }
+            NotifyObservers(PlayerActionsEnum.Moving);
         }
     }
     #endregion
@@ -76,9 +71,10 @@ public class PlayerScript : ObserverManager
     #region rotating
     private void RotatePlayer()
     {
-        Vector3 direction = playerNavMeshAgent.steeringTarget - transform.position;
-        direction.y = 0;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * 5);
+        //Vector3 direction = playerNavMeshAgent.steeringTarget - transform.position;
+        //direction.y = 0;
+        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * 5);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerNavMeshAgent.steeringTarget - transform.position), Time.deltaTime * 5);
     }
     #endregion
 
