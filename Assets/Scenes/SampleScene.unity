@@ -3561,7 +3561,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9.999998
+  orthographic size: 9.999997
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3829,7 +3829,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1946196260}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 9.999998
+    OrthographicSize: 9.999997
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -4652,7 +4652,7 @@ NavMeshAgent:
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 0
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -4672,12 +4672,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d9cc97c78331b48b0bc39e45ee823f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testObject: {fileID: 0}
-  animator: {fileID: 1134216236}
-  interactRange: 2.6
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  testObject: {fileID: 0}
+  interactRange: 2.6
 --- !u!95 &1134216236
 Animator:
   serializedVersion: 5

@@ -3,7 +3,7 @@ public enum PlayerActionsEnum
     Moving,
     PickUp,
     Throw,
-    Aim,
+    Standing,
     Idle,
     Sneaking
 }

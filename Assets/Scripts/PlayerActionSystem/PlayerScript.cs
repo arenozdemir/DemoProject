@@ -5,6 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.InputSystem;
 public class PlayerScript : ObserverManager
 {
+    [SerializeField] private LayerMask groundLayer;
     [SerializeField] GameObject testObject;
 
     List<Signals> signals = new List<Signals>();
@@ -23,13 +24,11 @@ public class PlayerScript : ObserverManager
         playerInput.FindAction("Interact").started += Interact;
         
         playerInput.FindAction("Sneaking").started += Sneaking;
+        //playerInput.FindAction("Sneaking").performed += Sneaking;
         playerInput.FindAction("Sneaking").canceled += Sneaking;
         
         playerInput.FindAction("Signals").started += Signals;
         playerInput.FindAction("Signals").canceled += Signals;
-
-        playerInput.FindAction("Move").started += Move;
-        playerInput.FindAction("Move").canceled += Move;
     }
     private void Start()
     {
@@ -46,24 +45,35 @@ public class PlayerScript : ObserverManager
     void Update()
     {
         RotatePlayer();
+        Mover();
     }
+
+    private void Mover()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer) && Mouse.current.rightButton.IsPressed())
+        {
+            playerNavMeshAgent.SetDestination(hit.point);
+            GetComponent<Animator>().SetBool("isWalking", true);
+        }
+        else if (playerNavMeshAgent.remainingDistance <= playerNavMeshAgent.stoppingDistance)
+        {
+            GetComponent<Animator>().SetBool("isWalking", false);
+        }
+    }
+
     #region Sneaking
-    
+
     private void Sneaking(InputAction.CallbackContext context)
     {
         if (context.started || context.performed)
         {
             NotifyObservers(PlayerActionsEnum.Sneaking);
         }
-    }
-    #endregion
-    
-    #region moving
-    private void Move(InputAction.CallbackContext context)
-    {
-        if (context.started)
+        else if (context.canceled)
         {
-            NotifyObservers(PlayerActionsEnum.Moving);
+            NotifyObservers(PlayerActionsEnum.Standing);
         }
     }
     #endregion
@@ -73,8 +83,10 @@ public class PlayerScript : ObserverManager
     {
         //Vector3 direction = playerNavMeshAgent.steeringTarget - transform.position;
         //direction.y = 0;
-        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * 5);
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerNavMeshAgent.steeringTarget - transform.position), Time.deltaTime * 5);
+        if (playerNavMeshAgent.velocity.magnitude > 0.1f)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerNavMeshAgent.velocity.normalized), Time.deltaTime * 5);
+        }
     }
     #endregion
 

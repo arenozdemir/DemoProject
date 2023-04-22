@@ -53,15 +53,6 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Move"",
-                    ""type"": ""Button"",
-                    ""id"": ""068b76ae-4178-4551-ae73-6810e6d77332"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -97,17 +88,6 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
                     ""action"": ""Sneaking"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1466499f-cf38-46c8-a9b5-4a2dfe918fbe"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -119,7 +99,6 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
         m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
         m_PlayerActions_Signals = m_PlayerActions.FindAction("Signals", throwIfNotFound: true);
         m_PlayerActions_Sneaking = m_PlayerActions.FindAction("Sneaking", throwIfNotFound: true);
-        m_PlayerActions_Move = m_PlayerActions.FindAction("Move", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -184,7 +163,6 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Interact;
     private readonly InputAction m_PlayerActions_Signals;
     private readonly InputAction m_PlayerActions_Sneaking;
-    private readonly InputAction m_PlayerActions_Move;
     public struct PlayerActionsActions
     {
         private @InputManager m_Wrapper;
@@ -192,7 +170,6 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_PlayerActions_Interact;
         public InputAction @Signals => m_Wrapper.m_PlayerActions_Signals;
         public InputAction @Sneaking => m_Wrapper.m_PlayerActions_Sneaking;
-        public InputAction @Move => m_Wrapper.m_PlayerActions_Move;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -211,9 +188,6 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
             @Sneaking.started += instance.OnSneaking;
             @Sneaking.performed += instance.OnSneaking;
             @Sneaking.canceled += instance.OnSneaking;
-            @Move.started += instance.OnMove;
-            @Move.performed += instance.OnMove;
-            @Move.canceled += instance.OnMove;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -227,9 +201,6 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
             @Sneaking.started -= instance.OnSneaking;
             @Sneaking.performed -= instance.OnSneaking;
             @Sneaking.canceled -= instance.OnSneaking;
-            @Move.started -= instance.OnMove;
-            @Move.performed -= instance.OnMove;
-            @Move.canceled -= instance.OnMove;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -252,6 +223,5 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnSignals(InputAction.CallbackContext context);
         void OnSneaking(InputAction.CallbackContext context);
-        void OnMove(InputAction.CallbackContext context);
     }
 }
