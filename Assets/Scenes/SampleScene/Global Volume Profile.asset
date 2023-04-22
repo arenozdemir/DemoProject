@@ -79,7 +79,7 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
   highlights:
     m_OverrideState: 1
     m_Value: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
@@ -210,10 +210,10 @@ MonoBehaviour:
     m_Value: 0
   blueOutRedIn:
     m_OverrideState: 1
-    m_Value: 28
+    m_Value: -3
   blueOutGreenIn:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 52
   blueOutBlueIn:
     m_OverrideState: 1
     m_Value: 100
