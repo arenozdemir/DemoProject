@@ -18,7 +18,7 @@ public class CameraFollower : MonoBehaviour
     void LateUpdate()
     {
         transform.position = Vector3.Lerp(transform.position, playerTransform.position, Time.deltaTime * followSpeed);
-        if (Input.GetKeyDown(KeyCode.E) && !isRotating)
+        if (Input.GetKeyDown(KeyCode.Q) && !isRotating)
         {
             isRotating = true;
             lastYValue = transform.eulerAngles.y;
