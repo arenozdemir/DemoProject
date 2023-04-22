@@ -8,6 +8,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera virtualCamera;
     float ortografiSize = 7.5f;
     [Range(4.5f, 10f)][SerializeField] float minDistance, maxDistance;
+    [SerializeField] Transform player;
     float snappedOrtograficSize;
     private void Start()
     {
@@ -21,7 +22,9 @@ public class CameraController : MonoBehaviour
         ortografiSize = Mathf.Lerp(ortografiSize, snappedOrtograficSize, Time.deltaTime * zoomSpped);
         
 
-        virtualCamera.m_Lens.OrthographicSize = ortografiSize;
+       // virtualCamera.m_Lens.OrthographicSize = ortografiSize;
+       Camera.main.orthographicSize = ortografiSize;
+        
       
     }
 }

@@ -10,7 +10,7 @@ public class DoorTester : MonoBehaviour, InteractableObjectsInterface
         PlayerScript player = GameObject.FindWithTag("Player").GetComponent<PlayerScript>();
         if (player.GetTestObject().TryGetComponent(out KeyCard keyCard))
         {
-            if (keyCard.cardData.typeOfCard == CardData.TypeOfCard.YunusunKartý)
+            if (keyCard.cardData.typeOfCard == CardData.TypeOfCard.YunusunKart)
             {
                 Debug.Log("DoorTester: NotifyInteractableObjects");
                 transform.position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
