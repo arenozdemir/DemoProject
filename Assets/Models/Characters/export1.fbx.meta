@@ -3,7 +3,37 @@ guid: adc1d22f009f2ed40a15a5e160bfed7a
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wolf3D_Body
+    second: {fileID: 2100000, guid: 2db72c77f7ce70946890e7c8161f48ae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wolf3D_Eye
+    second: {fileID: 2100000, guid: fdadca8ff2c44a94590b74b2962a5ae0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wolf3D_Hair
+    second: {fileID: 2100000, guid: 88eb0fe16309ed54bb84b941d82e3c64, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wolf3D_Outfit_Footwear
+    second: {fileID: 2100000, guid: bb303097cc1885247a3fc79b0154188f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wolf3D_Outfit_Top
+    second: {fileID: 2100000, guid: bb303097cc1885247a3fc79b0154188f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wolf3D_Skin
+    second: {fileID: 2100000, guid: dd2227df09dd09942bc310b863492a40, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
