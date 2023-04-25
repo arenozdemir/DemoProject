@@ -1712,8 +1712,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 247f6a89cdb5fcc4a92c38ef1192bd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subtitle: maybe this one can be useful
-  subtitleDuration: 0.5
+  subtitles:
+  - Yavuz
+  - Emre
+  - Kerim
+  subtitleDuration: 3
 --- !u!54 &513292113
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3902,6 +3905,7 @@ Transform:
   - {fileID: 711103960}
   - {fileID: 993549518}
   - {fileID: 877097302}
+  - {fileID: 1861661437}
   m_Father: {fileID: 1167357077}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6296,7 +6300,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 16.468262, y: -21.350494}
+  m_AnchoredPosition: {x: 21, y: -21.350494}
   m_SizeDelta: {x: 386.3847, y: 45.4515}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1433840068
@@ -8180,6 +8184,50 @@ Transform:
   m_Father: {fileID: 361308801}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1861661436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1861661437}
+  - component: {fileID: 1861661439}
+  m_Layer: 8
+  m_Name: Pop-Up
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1861661437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861661436}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 832820447}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1861661439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861661436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e998864a4d30649ad7122c82aecf28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1871945963
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8478,7 +8526,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 784c73f8c2bcde744b9f974690e16bb4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -21.25
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 784c73f8c2bcde744b9f974690e16bb4,
         type: 3}

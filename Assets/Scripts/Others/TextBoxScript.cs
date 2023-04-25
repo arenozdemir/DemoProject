@@ -8,6 +8,7 @@ public class TextBoxScript : MonoBehaviour
     float timer;
     bool timerBeginned;
     float fadeOutter = 200f;
+    float x = 20f;
     void Start()
     {
         StartCoroutine(FadeOut());
@@ -18,7 +19,14 @@ public class TextBoxScript : MonoBehaviour
         if (timerBeginned)
         {
             fadeOutter -= Time.deltaTime * 1000;
-            transform.position += Vector3.right * Time.deltaTime * fadeOutter;
+            x +=  Time.deltaTime * fadeOutter;
+            
+            x = Mathf.Clamp(x, -500, 300);
+            transform.position = new Vector3(x, transform.position.y, transform.position.z);    
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            FadeIn();
         }
     }
 
@@ -27,5 +35,8 @@ public class TextBoxScript : MonoBehaviour
         yield return new WaitForSeconds(3.5f);
         timerBeginned = true;
     }
-
+    public void FadeIn() 
+    {
+        fadeOutter = 1000;
+    }
 }
