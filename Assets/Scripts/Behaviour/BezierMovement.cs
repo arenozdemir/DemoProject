@@ -48,7 +48,7 @@ public class BezierMovement : Leaf
         }
         root = transform.root;
         startPos = root.position;
-        animator.CrossFade("Walking", 0.1f);
+        animator.SetBool("isWalking", true);
         isBeginned = true;
     }
 }

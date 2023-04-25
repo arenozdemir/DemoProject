@@ -21,7 +21,7 @@ public class Wait : Leaf
     private void Begin() 
     {
         if (isBeginned) return;
-        animator.CrossFade("Standing W_Briefcase Idle", 0.03f);
+        animator.SetBool("isWalking", false);
         isBeginned = true;
     }
 }

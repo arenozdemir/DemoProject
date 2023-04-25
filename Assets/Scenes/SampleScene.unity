@@ -3917,7 +3917,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 70.798, y: 90.608, z: 90.574}
 --- !u!1 &877097301
 GameObject:

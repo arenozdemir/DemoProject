@@ -24,19 +24,19 @@ public class GoToLocationNode : Leaf
         float distanceToTarget = Vector3.Distance(behaviour.transform.position, destination);
         if (behaviour.state == ActionState.IDLE)
         {
-            animator.CrossFade("Walking", 0.1f);
+            animator.SetBool("isWalking", true);
             behaviour.agent.SetDestination(destination);
             behaviour.state = ActionState.WORKING;
         }
         else if (Vector3.Distance(behaviour.agent.pathEndPosition, destination) >= 2f)
         {
-            animator.CrossFade("Standing W_Briefcase Idle", .1f);
+            animator.SetBool("isWalking", false);
             behaviour.state = ActionState.IDLE;
             return Node.Status.FAILURE;
         }
         else if (distanceToTarget <= 1f)
         {
-            animator.CrossFade("Standing W_Briefcase Idle", .1f);
+            animator.SetBool("isWalking", false);
             behaviour.state = ActionState.IDLE;
             return Node.Status.SUCCESS;
         }
