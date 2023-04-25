@@ -8,6 +8,8 @@ public class NPCBehaviour : MonoBehaviour
     public Node tree;
 
     public NavMeshAgent agent;
+
+    protected Animator animator;
     public enum ActionState
     {
         IDLE,
@@ -19,6 +21,7 @@ public class NPCBehaviour : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
     void Update()
     {
