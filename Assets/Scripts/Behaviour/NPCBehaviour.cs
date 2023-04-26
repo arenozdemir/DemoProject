@@ -23,7 +23,7 @@ public class NPCBehaviour : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
     }
-    void Update()
+    protected virtual void Update()
     {
         if (treeStatus != Node.Status.SUCCESS)
         {

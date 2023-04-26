@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BezierMovement : Leaf  
 {
@@ -13,8 +14,13 @@ public class BezierMovement : Leaf
     Vector3 startPos;
     public override Status Process()
     {
-        if (pathResolution >= 1) return Status.SUCCESS;
+        
         Begin();
+        if (pathResolution >= 1)
+        {
+            GetComponentInParent<NavMeshAgent>().enabled = true;
+            return Status.SUCCESS;
+        } 
         float distance = Vector3.Distance(PathDrawer(pathResolution), PathDrawer(pathResolution + .1f));
         pathResolution += Time.deltaTime / (distance * 4f);
         root.position = PathDrawer(pathResolution);
@@ -23,9 +29,17 @@ public class BezierMovement : Leaf
     }
     private void OnDrawGizmos()
     {
-        for(float i = 0; i < 30; i++)
+        
+        
+        for(float i = 0; i < 29; i++)
         {
-            Gizmos.DrawLine(PathDrawer(i/ (float)30), PathDrawer(i +1 / (float)30));
+            Vector3 a = Vector3.LerpUnclamped(transform.position, points[0].position, i/30);
+        Vector3 b = Vector3.LerpUnclamped(points[0].position, points[1].position, i/30);
+        Vector3 c = Vector3.LerpUnclamped(points[1].position, points[2].position, i/30);
+        Vector3 d = Vector3.LerpUnclamped(a, b, i/30);
+        Vector3 e = Vector3.LerpUnclamped(b, c, i/30);
+         Vector3.LerpUnclamped(d, e, i/30);
+            Gizmos.DrawLine(Vector3.LerpUnclamped(d, e, i/(float)30), Vector3.LerpUnclamped(d, e, i+1/(float)30));
         }
     }
     private Vector3 PathDrawer(float t)
@@ -35,7 +49,7 @@ public class BezierMovement : Leaf
         Vector3 c = Vector3.LerpUnclamped(points[1].position, points[2].position, t);
         Vector3 d = Vector3.LerpUnclamped(a, b, t);
         Vector3 e = Vector3.LerpUnclamped(b, c, t);
-
+        
         return Vector3.LerpUnclamped(d, e, t);
     }
 
@@ -50,5 +64,6 @@ public class BezierMovement : Leaf
         startPos = root.position;
         animator.SetBool("isWalking", true);
         isBeginned = true;
+        GetComponentInParent<NavMeshAgent>().enabled = false;
     }
 }
