@@ -18,10 +18,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: CivilNPC Variant 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5383731818928377918, guid: 8c06d83716e4b524c972035f8a88990d,
+        type: 3}
+      propertyPath: m_BaseOffset
+      value: -0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 9035707565335464323, guid: 8c06d83716e4b524c972035f8a88990d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 9035707565335464323, guid: 8c06d83716e4b524c972035f8a88990d,
         type: 3}
