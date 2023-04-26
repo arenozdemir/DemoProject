@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class TalkToSec : Leaf
 {
-    [SerializeField] private VIPGuardIDLE guardIdle;
+    [SerializeField] private List<VIPGuardIDLE> guardIdles;
     [SerializeField] private GameObject security;
     bool isBeginned;
     float timer = 0;
@@ -16,7 +16,7 @@ public class TalkToSec : Leaf
         timer += Time.deltaTime;
         if(timer > 2)
         {
-            guardIdle.isIdle = false;
+            guardIdles.ForEach(x => x.isIdle = false);
             return Status.SUCCESS;
         }
         return Status.RUNNING;

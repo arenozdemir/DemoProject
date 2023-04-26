@@ -7,12 +7,12 @@ public class VIPGuardIDLE : Leaf
     public bool isIdle = true;
     public override Status Process()
     {
+        Debug.Log("YÜRÜ AMK");
         if (!isIdle)
         {
-            Debug.Log("AAA");
-         return Status.SUCCESS;
+            Debug.Log("YÜRÜ AMK2");
+            return Status.SUCCESS;
         }
-        Debug.Log("BBB");
         return Status.RUNNING;
     }
 }

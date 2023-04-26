@@ -6,43 +6,30 @@ using UnityEngine.AI;
 public class PlayerSneaking : MonoBehaviour, IObserver
 {
     private NavMeshAgent playerNavMeshAgent;
+    private Animator animator;
     public void OnNotify(PlayerActionsEnum action)
     {
-        if (action == PlayerActionsEnum.Sneaking)
+        if(action == PlayerActionsEnum.Sneaking)
         {
             StartCoroutine(Sneaking());
-        }
-        else if (action == PlayerActionsEnum.Standing)
-        {
-            StopCoroutine(Sneaking());
-            if (playerNavMeshAgent.velocity.magnitude < 0.1f)
-            {
-                GetComponentInParent<Animator>().CrossFade("Idle", 0.1f);
-            }
-            else
-            {
-                GetComponentInParent<Animator>().CrossFade("Walking", 0.1f);
-            }
         }
     }
     private IEnumerator Sneaking()
     {
-        while (true)
+        if (playerNavMeshAgent.velocity.magnitude >= 0.1f)
         {
-            if (playerNavMeshAgent.velocity.magnitude < 0.1f)
-            {
-                GetComponentInParent<Animator>().CrossFade("Female Crouch Pose", 0.1f);
-            }
-            else
-            {
-                GetComponentInParent<Animator>().SetBool("isSneaking", true);
-            }
-            yield return null;
+            animator.SetBool("isSneaking", true);
         }
+        else if(playerNavMeshAgent.velocity.magnitude < 0.1f)
+        {
+            animator.SetBool("isCrouch", true);
+        }
+        yield return null;
     }
     private void Awake()
     {
         playerNavMeshAgent = GetComponentInParent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
     private void OnEnable()
     {

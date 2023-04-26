@@ -4920,7 +4920,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: 0
-  guardIdle: {fileID: 8998511934617472744}
+  guardIdles:
+  - {fileID: 8998511934617472744}
+  - {fileID: 8388212636214068694}
   security: {fileID: 9105102668821422802}
 --- !u!1 &879603800
 GameObject:

@@ -9,7 +9,7 @@ public class Otomat : MonoBehaviour,IDistorber,InteractableObjectsInterface
     public void Distorb()
     {
         // Distorb all Guards with in range
-        Collider[] guards = Physics.OverlapSphere(transform.position,distorbRange);
+        Collider[] guards = Physics.OverlapSphere(transform.position, distorbRange);
         foreach (Collider guard in guards)
         {
             if (guard.TryGetComponent(out GuardBehaviour guardBehaviour))
