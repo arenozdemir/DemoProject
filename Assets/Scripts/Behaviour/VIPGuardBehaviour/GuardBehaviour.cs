@@ -15,8 +15,9 @@ public class GuardBehaviour : NPCBehaviour
     {
         isDistorbed = v;
     }
-    private void Update() {
+    //private void Update() {
         //Will be deleted
+        /*
         if (isDistorbed)
         {
             timer += Time.deltaTime;
@@ -26,5 +27,5 @@ public class GuardBehaviour : NPCBehaviour
                 timer = 0;
             }
         }
-    }
+    }*/
 }

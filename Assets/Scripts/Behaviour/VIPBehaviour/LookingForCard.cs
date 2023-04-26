@@ -11,8 +11,8 @@ public class LookingForCard : Leaf
         while (timer <= 5)
         {
             timer += Time.deltaTime;
-            Debug.Log(timer);
-            Debug.Log("Looking for card");
+        //    Debug.Log(timer);
+          //  Debug.Log("Looking for card");
             return Status.RUNNING;
         }
         return Status.SUCCESS;
