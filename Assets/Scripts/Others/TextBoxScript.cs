@@ -5,38 +5,75 @@ using UnityEngine;
 
 public class TextBoxScript : MonoBehaviour
 {
-    float timer;
+    [SerializeField] Transform fadeInPoint;
+    [SerializeField] Transform fadeOutPoint;
+
+    public float timer;
     bool timerBeginned;
     float fadeOutter = 200f;
     float x = 20f;
-    void Start()
+    TextBoxState textBoxState;
+    public static TextBoxScript instance;
+    private void Awake()
     {
-        StartCoroutine(FadeOut());
-
+        instance = this;
     }
     private void Update()
     {
-        if (timerBeginned)
+        switch (textBoxState)
         {
-            fadeOutter -= Time.deltaTime * 1000;
-            x +=  Time.deltaTime * fadeOutter;
-            
-            x = Mathf.Clamp(x, -500, 300);
-            transform.position = new Vector3(x, transform.position.y, transform.position.z);    
-        }
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            FadeIn();
+            case TextBoxState.FadeIn:
+                FadeIn();
+                break;
+            case TextBoxState.FadeOut:
+                FadeOut();
+                break;
+            case TextBoxState.Idle:
+                Idle();
+                break;
+            case TextBoxState.Null:
+                break;
         }
     }
 
-    private IEnumerator FadeOut()
+    private void FadeOut()
     {
-        yield return new WaitForSeconds(3.5f);
-        timerBeginned = true;
+        timer += Time.deltaTime;
+        transform.position = Vector3.Lerp(fadeInPoint.position, fadeOutPoint.position, timer);
+        if (timer >= 1f)
+        {
+            textBoxState = TextBoxState.Null;
+            timer = 0;
+        }
     }
     public void FadeIn() 
     {
-        fadeOutter = 1000;
+        textBoxState = TextBoxState.FadeIn;
+        timer += Time.deltaTime;
+        transform.position = Vector3.Lerp(fadeOutPoint.position, fadeInPoint.position, timer);
+        if (timer >= 1f)
+        {
+           
+            textBoxState = TextBoxState.Idle;
+            timer = 0;
+        }
     }
+    private void Idle()
+    {
+        timer += Time.deltaTime;
+        if (timer >= 3f)
+        {
+            textBoxState = TextBoxState.FadeOut;
+            timer = 0;
+        }
+    }
+    
+}
+public enum TextBoxState
+{
+    Idle,
+    FadeIn,
+    FadeOut,
+    
+    Null
 }
