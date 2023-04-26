@@ -73,6 +73,7 @@ public class PlayerScript : ObserverManager
         }
         else if (context.canceled)
         {
+            GetComponent<Animator>().CrossFade("Idle", 0.03f);
             NotifyObservers(PlayerActionsEnum.Standing);
         }
     }

@@ -16,15 +16,18 @@ public class PlayerSneaking : MonoBehaviour, IObserver
     }
     private IEnumerator Sneaking()
     {
-        if (playerNavMeshAgent.velocity.magnitude >= 0.1f)
+        while (true) 
         {
-            animator.SetBool("isSneaking", true);
+            if (playerNavMeshAgent.velocity.magnitude > .1f)
+            {
+                animator.CrossFade("Sneaking Forward", 0.1f);
+            }
+            else if (playerNavMeshAgent.velocity.magnitude < .1f)
+            {
+                animator.CrossFade("Male Crouch Pose", 0.1f);
+            }
+            yield return null;
         }
-        else if(playerNavMeshAgent.velocity.magnitude < 0.1f)
-        {
-            animator.SetBool("isCrouch", true);
-        }
-        yield return null;
     }
     private void Awake()
     {
