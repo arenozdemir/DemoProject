@@ -48,7 +48,6 @@ public class GuardPatrol : Leaf
             }
             
             transform.root.GetComponent<NavMeshAgent>().SetDestination(patrolPoints[currentPoint].position);
-
             //  timer += Time.deltaTime;
 
         }

@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class Seeking : Sequence
 {
-    [SerializeField] FieldOfView fieldOfView;
+    public FieldOfView fieldOfView;
     public override Status Process()
     {
         //if fieldOfView.visibleTargets.Count > 0 then return success
