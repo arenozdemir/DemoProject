@@ -7,8 +7,10 @@ public class GuardBehaviour : NPCBehaviour
 {
     [SerializeField] bool isDistorbed;
     float timer;
+    public PlayerScript player;
     private void Start()
     {
+        player = FindObjectOfType<PlayerScript>();
         animator.SetFloat("cycleOffset", Random.Range(0, 1f));
     }
     public void SetIsDistorbed(bool v)
