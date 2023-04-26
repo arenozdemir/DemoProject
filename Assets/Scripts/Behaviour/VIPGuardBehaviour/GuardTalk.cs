@@ -13,7 +13,10 @@ public class GuardTalk : Leaf
         timer += Time.deltaTime;
         if (timer > 4)
         {
-            guardIdle[currentChild].isIdle = false;
+            foreach (VIPGuardIDLE guard in guardIdle)
+            {
+                guard.isIdle = false;
+            }
             return Status.SUCCESS;
         }
         return Status.RUNNING;
