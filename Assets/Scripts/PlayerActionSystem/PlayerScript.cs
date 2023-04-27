@@ -41,13 +41,14 @@ public class PlayerScript : ObserverManager
             }
         }
         signals.ForEach(x => x.Hide());
+        destination = transform.position;
     }
     void Update()
     {
         RotatePlayer();
         Mover();
     }
-
+    Vector3 destination;
     private void Mover()
     {
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
@@ -55,10 +56,11 @@ public class PlayerScript : ObserverManager
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer) && Mouse.current.rightButton.IsPressed())
         {
             GetComponent<Animator>().SetBool("isWalking", true);
-            NotifyObservers(PlayerActionsEnum.Moving);
+           // NotifyObservers(PlayerActionsEnum.Moving);
             playerNavMeshAgent.SetDestination(hit.point);
+            destination = playerNavMeshAgent.pathEndPosition;
         }
-        else if (playerNavMeshAgent.remainingDistance <= playerNavMeshAgent.stoppingDistance)
+        else if (Vector3.Distance(transform.position,destination) <= .5f)
         {
             GetComponent<Animator>().SetBool("isWalking", false);
         }
@@ -68,15 +70,16 @@ public class PlayerScript : ObserverManager
 
     private void Sneaking(InputAction.CallbackContext context)
     {
-        if (context.started || context.performed)
+        if (context.started )
         {
             GetComponent<Animator>().SetBool("isSneaking", true);
-            NotifyObservers(PlayerActionsEnum.Sneaking);
+         //   NotifyObservers(PlayerActionsEnum.Sneaking);
         }
         else if (context.canceled)
         {
             //GetComponent<Animator>().CrossFade("Idle", .01f);
-            NotifyObservers(PlayerActionsEnum.Standing);
+          //  NotifyObservers(PlayerActionsEnum.Standing);
+            GetComponent<Animator>().SetBool("isSneaking", false);
         }
     }
     #endregion

@@ -11,30 +11,31 @@ public class PlayerSneaking : MonoBehaviour, IObserver
     bool isSneaking;
     public void OnNotify(PlayerActionsEnum action)
     {
-        if (action == PlayerActionsEnum.Sneaking)
+       /* if (action == PlayerActionsEnum.Sneaking)
         {
             isSneaking = true;
         }
-        else if (action == PlayerActionsEnum.Standing) isSneaking = false;
+        else if (action == PlayerActionsEnum.Standing) isSneaking = false;*/
     }
     private void Update()
     {
-        Debug.Log(isSneaking);
+        
         Sneaking();
     }
     private void Sneaking()
     {
-        if (isSneaking)
-        {
+        
             if (playerNavMeshAgent.velocity.magnitude > .1f)
             {
-                animator.SetBool("isSneaking", true);
+               // animator.SetBool("isSneaking", true);
+               Debug.Log(playerNavMeshAgent.velocity.magnitude);
+               animator.SetBool("sneakWalk",true);
             }
             if (playerNavMeshAgent.velocity.magnitude < .1f)
             {
-                animator.CrossFade("Male Crouch Pose", 0.1f);
+                animator.SetBool("sneakWalk",false);
             }
-        }
+        
     }
     private void Awake()
     {
