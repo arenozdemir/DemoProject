@@ -28,7 +28,6 @@ public class CameraObscuring : MonoBehaviour
         if (!other.gameObject.CompareTag("Player"))
         {
             other.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
-            other.GetComponent<MeshRenderer>().enabled = false;
             obscuringObjects.Add(other, other.gameObject.layer);
             other.gameObject.layer = LayerMask.NameToLayer("Obscured");
         }
@@ -38,7 +37,6 @@ public class CameraObscuring : MonoBehaviour
         if (!other.gameObject.CompareTag("Player"))
         {
             other.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-            other.GetComponent<MeshRenderer>().enabled = true;
             other.gameObject.layer = obscuringObjects[other];
             obscuringObjects.Remove(other);
         }
