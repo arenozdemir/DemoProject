@@ -10,9 +10,13 @@ public class Otomat : MonoBehaviour,IDistorber,InteractableObjectsInterface
     [SerializeField] GameObject player;
     [SerializeField] GameObject box;
     [SerializeField] Transform point;
+    [SerializeField] GameObject cola;
+    [SerializeField] Transform colaPoint;
     
     bool usedOnce;
     bool isShake;
+    bool isSpawner;
+
     float timer = 0;
     float elapsed = 0.0f;
     public void Distorb()
@@ -47,11 +51,17 @@ public class Otomat : MonoBehaviour,IDistorber,InteractableObjectsInterface
                 float y = Random.Range(-.5f, .5f) * .5f;
                 Camera.main.transform.localPosition = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y + y, originalPos.z);
                 box.GetComponent<Rigidbody>().isKinematic = false;
+                //isSpawner = true;
             }
             else {
                 Camera.main.transform.localPosition = originalPos;
                 isShake = false;
             }
+        }
+        if (isSpawner)
+        {
+            ColaSpawner();
+            isSpawner = false;
         }
     }
     private void OnDrawGizmosSelected() {
@@ -72,5 +82,14 @@ public class Otomat : MonoBehaviour,IDistorber,InteractableObjectsInterface
         }
         yield return new WaitForSeconds(1);
         isShake = true;
+        isSpawner = true;
+    }
+    private void ColaSpawner()
+    {
+        for(int i = 0; i < 10; i++)
+        {
+            GameObject colaPref = Instantiate(cola, colaPoint.position, transform.rotation);
+            colaPref.GetComponent<Rigidbody>().AddForce(Vector3.down * 200f, ForceMode.Impulse);
+        }
     }
 }
