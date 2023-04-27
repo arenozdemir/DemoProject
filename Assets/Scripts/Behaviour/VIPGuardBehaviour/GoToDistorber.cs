@@ -11,7 +11,7 @@ public class GoToDistorber : Leaf {
         {
             guard = GetComponentInParent<GuardBehaviour>();
             isBeginned = true;
-            if(RandomPoint(guard.GetDistorber().position,5f, out destinationPoint))
+            if(RandomPoint(guard.GetDistorber().position,3f, out destinationPoint))
             {
                 guard.agent.SetDestination(destinationPoint);
                 animator.SetBool("isWalking",true);

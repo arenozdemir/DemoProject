@@ -4,7 +4,7 @@ public class LookAtNode : Leaf {
     [SerializeField] float turnSpeed;
     float lerpValue;
     [SerializeField] Transform targetDirection;
-    [SerializeField] NPCBehaviour nPCBehaviour;
+    NPCBehaviour nPCBehaviour;
     bool isBeginned;
     public override Status Process()
     {

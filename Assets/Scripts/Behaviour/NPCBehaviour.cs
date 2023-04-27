@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NPCBehaviour : MonoBehaviour
+public abstract class NPCBehaviour : MonoBehaviour
 {
     public Node tree;
 
