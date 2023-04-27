@@ -6,9 +6,15 @@ public class ChaseState : StateBase
 {
     GuardBehaviour gb;
     [SerializeField] StateBase lookForPlayer;
+    [SerializeField] GameObject bubble;
+
     void Start()
     {
         gb =(GuardBehaviour)npc;
+        
+    }
+    private void OnEnable() {
+        bubble.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -18,5 +24,7 @@ public class ChaseState : StateBase
         {
             GoToNextState(lookForPlayer);
         }
+        
+        
     }
 }
