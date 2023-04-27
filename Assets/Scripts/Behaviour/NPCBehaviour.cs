@@ -17,7 +17,7 @@ public class NPCBehaviour : MonoBehaviour
     }
     public ActionState state = ActionState.IDLE;
 
-    Node.Status treeStatus = Node.Status.RUNNING;
+     Node.Status treeStatus = Node.Status.RUNNING;
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();

@@ -4,7 +4,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Otomat : MonoBehaviour,IDistorber,InteractableObjectsInterface
+public class Otomat : MonoBehaviour, IDistorber, InteractableObjectsInterface
 {
     [SerializeField] float distorbRange;
     [SerializeField] GameObject player;
@@ -12,7 +12,7 @@ public class Otomat : MonoBehaviour,IDistorber,InteractableObjectsInterface
     [SerializeField] Transform point;
     [SerializeField] GameObject cola;
     [SerializeField] Transform colaPoint;
-    
+
     bool usedOnce;
     bool isShake;
     bool isSpawner;
@@ -27,17 +27,13 @@ public class Otomat : MonoBehaviour,IDistorber,InteractableObjectsInterface
         {
             if (guard.TryGetComponent(out GuardBehaviour guardBehaviour))
             {
-                guardBehaviour.SetIsDistorbed(true);
+                guardBehaviour.SetIsDistorbed(true, this.transform);
             }
         }
     }
     public void NotifyInteractableObjects()
     {
-        if(!usedOnce)
-        {
-            Distorb();
-            usedOnce = true;
-        }
+
         StartCoroutine(SetPlayerPosition());
     }
     private void Update()
@@ -53,20 +49,27 @@ public class Otomat : MonoBehaviour,IDistorber,InteractableObjectsInterface
                 box.GetComponent<Rigidbody>().isKinematic = false;
                 //isSpawner = true;
             }
-            else {
+            else
+            {
                 Camera.main.transform.localPosition = originalPos;
                 isShake = false;
             }
         }
         if (isSpawner)
         {
+            if (!usedOnce)
+            {
+                Distorb();
+                usedOnce = true;
+            }
             ColaSpawner();
             isSpawner = false;
         }
     }
-    private void OnDrawGizmosSelected() {
+    private void OnDrawGizmosSelected()
+    {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position,distorbRange);
+        Gizmos.DrawWireSphere(transform.position, distorbRange);
     }
     private IEnumerator SetPlayerPosition()
     {
@@ -86,7 +89,7 @@ public class Otomat : MonoBehaviour,IDistorber,InteractableObjectsInterface
     }
     private void ColaSpawner()
     {
-        for(int i = 0; i < 10; i++)
+        for (int i = 0; i < 10; i++)
         {
             GameObject colaPref = Instantiate(cola, colaPoint.position, transform.rotation);
             colaPref.GetComponent<Rigidbody>().AddForce(Vector3.down * 200f, ForceMode.Impulse);

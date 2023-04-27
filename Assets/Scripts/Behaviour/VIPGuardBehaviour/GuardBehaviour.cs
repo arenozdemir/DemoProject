@@ -8,13 +8,16 @@ public class GuardBehaviour : NPCBehaviour
     [SerializeField] bool isDistorbed;
     float timer;
     public PlayerScript player;
+    [SerializeField] Node distorbedSequence;
+    Transform distorber;
     private void Start()
     {
         player = FindObjectOfType<PlayerScript>();
         animator.SetFloat("cycleOffset", Random.Range(0, 1f));
     }
-    public void SetIsDistorbed(bool v)
+    public void SetIsDistorbed(bool v,Transform distorber)
     {
+        this.distorber = distorber;
         isDistorbed = v;
     }
     protected override void Update() {
@@ -22,12 +25,11 @@ public class GuardBehaviour : NPCBehaviour
         base.Update();
         if (isDistorbed)
         {
-            timer += Time.deltaTime;
-            if (timer >= 3f)
-            {
-                isDistorbed = false;
-                timer = 0;
-            }
+           tree = distorbedSequence;
         }
+    }
+    public Transform GetDistorber()
+    {
+        return distorber;
     }
 }

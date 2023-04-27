@@ -3,13 +3,14 @@ using UnityEngine.AI;
 
 public class Wait : Leaf
 {
+    [SerializeField] float waitTime;
     float timer = 0;
     bool isBeginned;
     public override Status Process()
     {
         timer += Time.deltaTime;
         Begin();
-        if (timer > 3)
+        if (timer > waitTime)
         {
             GetComponentInParent<NavMeshAgent>().ResetPath();
             return Status.SUCCESS;
