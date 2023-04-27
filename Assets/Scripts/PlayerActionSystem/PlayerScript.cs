@@ -54,8 +54,9 @@ public class PlayerScript : ObserverManager
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer) && Mouse.current.rightButton.IsPressed())
         {
-            playerNavMeshAgent.SetDestination(hit.point);
             GetComponent<Animator>().SetBool("isWalking", true);
+            NotifyObservers(PlayerActionsEnum.Moving);
+            playerNavMeshAgent.SetDestination(hit.point);
         }
         else if (playerNavMeshAgent.remainingDistance <= playerNavMeshAgent.stoppingDistance)
         {
@@ -69,11 +70,12 @@ public class PlayerScript : ObserverManager
     {
         if (context.started || context.performed)
         {
+            GetComponent<Animator>().SetBool("isSneaking", true);
             NotifyObservers(PlayerActionsEnum.Sneaking);
         }
         else if (context.canceled)
         {
-            GetComponent<Animator>().CrossFade("Idle", 0.03f);
+            //GetComponent<Animator>().CrossFade("Idle", .01f);
             NotifyObservers(PlayerActionsEnum.Standing);
         }
     }

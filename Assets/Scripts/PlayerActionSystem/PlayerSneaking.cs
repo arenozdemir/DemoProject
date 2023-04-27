@@ -7,26 +7,33 @@ public class PlayerSneaking : MonoBehaviour, IObserver
 {
     private NavMeshAgent playerNavMeshAgent;
     private Animator animator;
+
+    bool isSneaking;
     public void OnNotify(PlayerActionsEnum action)
     {
-        if(action == PlayerActionsEnum.Sneaking)
+        if (action == PlayerActionsEnum.Sneaking)
         {
-            StartCoroutine(Sneaking());
+            isSneaking = true;
         }
+        else if (action == PlayerActionsEnum.Standing) isSneaking = false;
     }
-    private IEnumerator Sneaking()
+    private void Update()
     {
-        while (true) 
+        Debug.Log(isSneaking);
+        Sneaking();
+    }
+    private void Sneaking()
+    {
+        if (isSneaking)
         {
             if (playerNavMeshAgent.velocity.magnitude > .1f)
             {
-                animator.CrossFade("Sneaking Forward", 0.1f);
+                animator.SetBool("isSneaking", true);
             }
-            else if (playerNavMeshAgent.velocity.magnitude < .1f)
+            if (playerNavMeshAgent.velocity.magnitude < .1f)
             {
                 animator.CrossFade("Male Crouch Pose", 0.1f);
             }
-            yield return null;
         }
     }
     private void Awake()
