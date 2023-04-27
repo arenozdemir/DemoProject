@@ -56,7 +56,6 @@ public class PlayerScript : ObserverManager
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer) && Mouse.current.rightButton.IsPressed())
         {
             GetComponent<Animator>().SetBool("isWalking", true);
-           // NotifyObservers(PlayerActionsEnum.Moving);
             playerNavMeshAgent.SetDestination(hit.point);
             destination = playerNavMeshAgent.pathEndPosition;
         }
@@ -64,6 +63,7 @@ public class PlayerScript : ObserverManager
         {
             GetComponent<Animator>().SetBool("isWalking", false);
         }
+        
     }
 
     #region Sneaking
