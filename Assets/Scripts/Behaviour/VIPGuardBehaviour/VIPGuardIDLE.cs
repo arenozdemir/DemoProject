@@ -5,12 +5,14 @@ using UnityEngine;
 public class VIPGuardIDLE : Leaf
 {
     public bool isIdle = true;
+    [SerializeField] StateBase lookForPlayer;
     public override Status Process()
     {
-        Debug.Log("YÜRÜ AMK");
+        
         if (!isIdle)
         {
-            Debug.Log("YÜRÜ AMK2");
+            GetComponentInParent<GuardBehaviour>().currentState.GoToNextState(lookForPlayer);
+
             return Status.SUCCESS;
         }
         return Status.RUNNING;

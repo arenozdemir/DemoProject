@@ -10,6 +10,7 @@ public abstract class NPCBehaviour : MonoBehaviour
     public NavMeshAgent agent;
 
     protected Animator animator;
+    public StateBase currentState;
     public enum ActionState
     {
         IDLE,
@@ -27,7 +28,7 @@ public abstract class NPCBehaviour : MonoBehaviour
     {
         if (treeStatus != Node.Status.SUCCESS)
         {
-            treeStatus = tree.Process();
+            treeStatus = currentState.tree.Process();
         }
     }
 }

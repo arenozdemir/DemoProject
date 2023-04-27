@@ -5,15 +5,18 @@ using UnityEngine.AI;
 
 public class GuardBehaviour : NPCBehaviour
 {
-    [SerializeField] bool isDistorbed;
+    public bool isDistorbed;
     float timer;
     public PlayerScript player;
     [SerializeField] Node distorbedSequence;
     Transform distorber;
+    bool awareOfPlayer;
+    FieldOfView fov;
     private void Start()
     {
         player = FindObjectOfType<PlayerScript>();
         animator.SetFloat("cycleOffset", Random.Range(0, 1f));
+        fov = GetComponentInChildren<FieldOfView>();
     }
     public void SetIsDistorbed(bool v,Transform distorber)
     {
@@ -31,5 +34,13 @@ public class GuardBehaviour : NPCBehaviour
     public Transform GetDistorber()
     {
         return distorber;
+    }
+    public bool DidSeePlayer()
+    {
+        return fov.visibleTargets.Count>0;
+    }
+    public PlayerScript GetPlayer()
+    {
+        return player;
     }
 }
