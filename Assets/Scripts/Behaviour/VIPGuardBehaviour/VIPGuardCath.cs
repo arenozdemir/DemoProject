@@ -6,6 +6,7 @@ public class VIPGuardCath : Leaf
     [HideInInspector] public Transform target;
     GuardBehaviour behaviour;
     bool isbeginned;
+    [SerializeField] StateBase CatchState;
     public override Status Process()
     {
         Begin();
@@ -14,9 +15,10 @@ public class VIPGuardCath : Leaf
             PlayerScript playerScript = FindObjectOfType<PlayerScript>();
             playerScript.GetComponent<NavMeshAgent>().ResetPath();
             playerScript.enabled = false;
+            behaviour.currentState.GoToNextState(CatchState);
             return Status.SUCCESS;
         }
-        behaviour.agent.SetDestination(target.position);
+        behaviour.agent.SetDestination(behaviour.GetPlayer().transform.position);
         return Status.RUNNING;
     }
     void Begin()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraObscuring : MonoBehaviour
 {
-    Transform  player;
+    Transform player;
     Dictionary<Collider, int> obscuringObjects = new Dictionary<Collider, int>();
     CapsuleCollider capsuleCollider;
     [SerializeField] float mesafe;
@@ -18,7 +18,7 @@ public class CameraObscuring : MonoBehaviour
     void Update()
     {
         float dist = Vector3.Distance(transform.position, player.position);
-        capsuleCollider.center = new Vector3(capsuleCollider.center.x,capsuleCollider.center.y) + Vector3.forward * (dist -mesafe) * 0.5f;
+        capsuleCollider.center = new Vector3(capsuleCollider.center.x, capsuleCollider.center.y) + Vector3.forward * (dist - mesafe) * 0.5f;
         capsuleCollider.height = dist - mesafe;
         transform.LookAt(player);
 
@@ -27,18 +27,26 @@ public class CameraObscuring : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Player"))
         {
-            other.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
-            obscuringObjects.Add(other, other.gameObject.layer);
-            other.gameObject.layer = LayerMask.NameToLayer("Obscured");
+            if (other.TryGetComponent(out MeshRenderer renderer))
+            {
+                renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+                obscuringObjects.Add(other, other.gameObject.layer);
+                other.gameObject.layer = LayerMask.NameToLayer("Obscured");
+            }
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (!other.gameObject.CompareTag("Player"))
         {
-            other.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-            other.gameObject.layer = obscuringObjects[other];
-            obscuringObjects.Remove(other);
+
+            if (other.TryGetComponent(out MeshRenderer renderer))
+            {
+
+                renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+                other.gameObject.layer = obscuringObjects[other];
+                obscuringObjects.Remove(other);
+            }
         }
-    }   
+    }
 }

@@ -1197,13 +1197,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230091334}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0.018002145, z: -0, w: 0.999838}
+  m_LocalPosition: {x: -14.05729, y: -0.23, z: -8.605489}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 996671007}
-  m_RootOrder: 0
+  m_Father: {fileID: 727106447}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &230091336
 MonoBehaviour:
@@ -1219,6 +1219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: 2
   isIdle: 1
+  lookForPlayer: {fileID: 1379931287}
 --- !u!1 &235047251
 GameObject:
   m_ObjectHideFlags: 0
@@ -3479,7 +3480,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &413983022
 Transform:
   m_ObjectHideFlags: 0
@@ -3507,7 +3508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83292ae20e3002949a1101e841c84591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 0}
+  tree: {fileID: 2092319082}
   ChaseState: {fileID: 577948672}
 --- !u!1 &427352956
 GameObject:
@@ -3811,6 +3812,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: 0
   target: {fileID: 0}
+  CatchState: {fileID: 0}
 --- !u!1 &492962614
 GameObject:
   m_ObjectHideFlags: 0
@@ -5042,7 +5044,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &577948672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5055,7 +5057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a1145264055c174da9efaafbf81bf6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 0}
+  tree: {fileID: 968643359}
   lookForPlayer: {fileID: 1379931287}
 --- !u!4 &577948673
 Transform:
@@ -7239,7 +7241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tree: {fileID: 996671006}
   agent: {fileID: 0}
-  currentState: {fileID: 0}
+  currentState: {fileID: 1975570348}
   state: 0
   isDistorbed: 0
   player: {fileID: 0}
@@ -7279,6 +7281,7 @@ Transform:
   - {fileID: 326075162}
   - {fileID: 662083900}
   - {fileID: 815859112}
+  - {fileID: 230091335}
   - {fileID: 996671007}
   - {fileID: 2092319083}
   - {fileID: 1975570347}
@@ -11044,6 +11047,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: 0
   target: {fileID: 0}
+  CatchState: {fileID: 1809894448}
 --- !u!1 &971516994 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7342855658915744305, guid: 25e86168bc920fa45a45b88bd3c99ae3,
@@ -11496,7 +11500,6 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 230091335}
   - {fileID: 758890294}
   m_Father: {fileID: 727106447}
   m_RootOrder: 3
@@ -12625,6 +12628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: 2
   isIdle: 1
+  lookForPlayer: {fileID: 0}
 --- !u!1 &1173490879
 GameObject:
   m_ObjectHideFlags: 0
@@ -14597,12 +14601,12 @@ GameObject:
   - component: {fileID: 1379931286}
   - component: {fileID: 1379931287}
   m_Layer: 8
-  m_Name: SearchForPlayerState
+  m_Name: LookForPlayerState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1379931286
 Transform:
   m_ObjectHideFlags: 0
@@ -14630,7 +14634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1d27848bf921e40886a07e1a6f5fdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 0}
+  tree: {fileID: 1494478888}
   ChaseState: {fileID: 577948672}
 --- !u!1 &1380090394
 GameObject:
@@ -16080,7 +16084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &1527187939
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -17994,6 +17998,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4f66cdd1a6c33c544bd08cba674d0b3c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1082271958561512970, guid: 4f66cdd1a6c33c544bd08cba674d0b3c,
         type: 3}
       propertyPath: m_Layer
@@ -19030,7 +19039,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1809894447
 Transform:
   m_ObjectHideFlags: 0
@@ -19058,7 +19067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2df15b08dded3e044a12fd111444c5ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 0}
+  tree: {fileID: 230091336}
 --- !u!4 &1812257004 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f05a1085f869c504f86e9e5c373ef695,
@@ -21294,7 +21303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e13774b3581cc342b58e46949ca44ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 0}
+  tree: {fileID: 230091336}
   distorbedState: {fileID: 413983023}
 --- !u!1 &1980843575
 GameObject:
@@ -23716,6 +23725,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: 0
   isIdle: 1
+  lookForPlayer: {fileID: 0}
 --- !u!4 &270183943319525669
 Transform:
   m_ObjectHideFlags: 0
@@ -24347,6 +24357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: 0
   target: {fileID: 0}
+  CatchState: {fileID: 0}
 --- !u!1 &836275811999284326
 GameObject:
   m_ObjectHideFlags: 0
@@ -25364,6 +25375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: 0
   target: {fileID: 0}
+  CatchState: {fileID: 0}
 --- !u!4 &1707054093956245834
 Transform:
   m_ObjectHideFlags: 0
@@ -26306,6 +26318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: 0
   isIdle: 1
+  lookForPlayer: {fileID: 0}
 --- !u!4 &2301272074884466593
 Transform:
   m_ObjectHideFlags: 0
@@ -27778,7 +27791,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3346481907678603801
 Transform:
   m_ObjectHideFlags: 0
@@ -28324,7 +28337,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &3683349508106207804
 GameObject:
   m_ObjectHideFlags: 0
@@ -29901,6 +29914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: 0
   target: {fileID: 0}
+  CatchState: {fileID: 0}
 --- !u!1 &5189572525294466505
 GameObject:
   m_ObjectHideFlags: 0
@@ -33956,6 +33970,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: 0
   isIdle: 1
+  lookForPlayer: {fileID: 0}
 --- !u!4 &8390801546539009481
 Transform:
   m_ObjectHideFlags: 0
@@ -34629,6 +34644,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: 0
   target: {fileID: 0}
+  CatchState: {fileID: 0}
 --- !u!1 &8972465200928819283
 GameObject:
   m_ObjectHideFlags: 0
@@ -34693,6 +34709,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: 2
   isIdle: 1
+  lookForPlayer: {fileID: 0}
 --- !u!1 &9004056346470577910
 GameObject:
   m_ObjectHideFlags: 0
@@ -34834,7 +34851,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &9105102668821422803
 CapsuleCollider:
   m_ObjectHideFlags: 0
