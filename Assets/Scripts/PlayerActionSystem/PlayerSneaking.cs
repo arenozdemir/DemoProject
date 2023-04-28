@@ -27,8 +27,6 @@ public class PlayerSneaking : MonoBehaviour, IObserver
         
             if (playerNavMeshAgent.velocity.magnitude > .1f)
             {
-               // animator.SetBool("isSneaking", true);
-               Debug.Log(playerNavMeshAgent.velocity.magnitude);
                animator.SetBool("sneakWalk",true);
             }
             if (playerNavMeshAgent.velocity.magnitude < .1f)
