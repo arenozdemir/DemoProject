@@ -9,6 +9,7 @@ public class DialogueButton : MonoBehaviour
     public string text;
     public DialogueButton[] children;
     public string response;
+    public string longDescriptedText;
     void Start()
     {
         GetComponent<Button>().onClick.AddListener(SelectButton);
