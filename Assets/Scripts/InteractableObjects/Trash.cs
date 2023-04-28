@@ -9,7 +9,7 @@ public class Trash : MonoBehaviour, IDistorber, InteractableObjectsInterface
     [SerializeField] Transform point;
     bool isShake;
     float timer = 0;
-    bool usedOnce;
+    bool usedOnce = true;
     float elapsed = 0;
     public void Distorb()
     {
@@ -41,6 +41,7 @@ public class Trash : MonoBehaviour, IDistorber, InteractableObjectsInterface
             {
                 Camera.main.transform.localPosition = originalPos;
                 isShake = false;
+                usedOnce = false;
             }
         }
         if (!usedOnce)
