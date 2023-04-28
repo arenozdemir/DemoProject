@@ -61,6 +61,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63c92b2700a1dc246b365a397d1b0129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: ilkTest
+  children:
+  - {fileID: 5291311235726897313, guid: 0405d4089df5c7943a475012101e0be8, type: 3}
+  - {fileID: 5291311235726897313, guid: def5a009fcf3761478995144760f3ba0, type: 3}
+  response: ilk response
 --- !u!114 &2691552503819061754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

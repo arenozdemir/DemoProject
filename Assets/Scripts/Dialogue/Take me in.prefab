@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2691552503819061754}
   - component: {fileID: 7375196824711734712}
   m_Layer: 5
-  m_Name: DialogueButtonPrefab 1
+  m_Name: Take me in
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,9 +61,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63c92b2700a1dc246b365a397d1b0129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: "DeneyelimBakal\u0131m"
-  children: []
-  response: dene
+  text: "Beni i\xE7eri al"
+  children:
+  - {fileID: 5291311235726897313, guid: 2f9d3c1cc5c46d44b82808171c1de0a8, type: 3}
+  response: De sie
 --- !u!114 &2691552503819061754
 MonoBehaviour:
   m_ObjectHideFlags: 0
