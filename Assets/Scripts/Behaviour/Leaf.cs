@@ -8,7 +8,7 @@ public class Leaf : Node
 
     private void Awake()
     {
-        animator = transform.root.GetComponent<Animator>();
+        animator = GetComponentInParent<Animator>();
     }
 
 }

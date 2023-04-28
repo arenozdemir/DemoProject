@@ -12,12 +12,14 @@ public class Wait : Leaf
         Begin();
         if (timer > waitTime)
         {
-            GetComponentInParent<NavMeshAgent>().ResetPath();
+            if (GetComponentInParent<NavMeshAgent>().enabled)
+                GetComponentInParent<NavMeshAgent>().ResetPath();
+            
             return Status.SUCCESS;
         }
         else return Status.RUNNING;
     }
-    private void Begin() 
+    private void Begin()
     {
         if (isBeginned) return;
         animator.SetBool("isWalking", false);

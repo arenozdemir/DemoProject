@@ -26,9 +26,9 @@ public abstract class NPCBehaviour : MonoBehaviour
     }
     protected virtual void Update()
     {
-        if (treeStatus != Node.Status.SUCCESS)
-        {
+      //  if (treeStatus != Node.Status.SUCCESS)
+      //  {
             treeStatus = currentState.tree.Process();
-        }
+      //  }
     }
 }
