@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2691552503819061754}
   - component: {fileID: 7375196824711734712}
   m_Layer: 5
-  m_Name: Take me in
+  m_Name: Bluff him
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,11 +61,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63c92b2700a1dc246b365a397d1b0129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Say you have to meet someone
+  text: Bluff him
   children:
-  - {fileID: 5291311235726897313, guid: 2f9d3c1cc5c46d44b82808171c1de0a8, type: 3}
-  response: '- De sie'
-  longDescriptedText: 
+  - {fileID: 5291311235726897313, guid: 970c6a730cccdce44822d131a81641b8, type: 3}
+  - {fileID: 5291311235726897313, guid: 164e7109a27c53c45a3e174c3ee8bbc2, type: 3}
+  response: I don't know, who are you?
+  longDescriptedText: Password? Are you kidding... Don't you know me?
 --- !u!114 &2691552503819061754
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] GameObject UIParent;
     [SerializeField] Transform blackFrame;
     float timer;
-    bool isWorking;
+    public bool isWorking;
     public static DialogueManager Instance{get;private set;}
     private void Awake() {
         Instance = this;
@@ -27,16 +27,22 @@ public class DialogueManager : MonoBehaviour
         UIParent.SetActive(false);
     }
     private void Update() {
-        if(isWorking)
-            timer+= Time.deltaTime;
+        if (isWorking)
+            timer += Time.deltaTime;
+        else
+            timer -= Time.deltaTime;
+        
+        timer = Mathf.Clamp(timer, 0, 1);
         blackFrame.transform.localScale = new Vector3(1,Mathf.Lerp(14,8.3f,timer),1);
     }
-    // secim yaptik
-    // 1 sn bos kaldi
-    //uzun cevap gorunuyor
-    //bir saniye bekle
-    //bizim uzun cevap yok ol response al
-
+    void Hide()
+    {
+        isWorking = false;
+    }
+    public void HideInTime(float time)
+    {
+        Invoke("Hide", time);
+    }
 
     public void SelectDialogue(DialogueButton dialogue)
     {
@@ -44,7 +50,7 @@ public class DialogueManager : MonoBehaviour
        // currentText.text = dialogue.response;
        // GenerateButtons();
        Invoke("DeleteButtons",0.5f);
-       StartCoroutine(DialogueRoutine(1f));
+       StartCoroutine(DialogueRoutine(2f));
     }
     void ShowLongText()
     {
@@ -53,6 +59,10 @@ public class DialogueManager : MonoBehaviour
     void ShowResponse()
     {
         textArea.text = currentDialogueNode.response;
+    }
+    void HideResponse()
+    {
+        textArea.text = "";
     }
     void DeleteButtons()
     {
@@ -67,7 +77,8 @@ public class DialogueManager : MonoBehaviour
         ShowLongText();
         yield return new WaitForSeconds(waitTİme);
         ShowResponse();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
+        HideResponse();
         GenerateButtons();
         
     }

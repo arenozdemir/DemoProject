@@ -61,10 +61,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63c92b2700a1dc246b365a397d1b0129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Say you lost your phone
-  children: []
-  response: "- Sizi i\xE7eri alamam"
-  longDescriptedText: "Parola.. evet.. \u015Fey olmas\u0131 laz\u0131m \u0131\u0131\u0131"
+  text: 
+  children:
+  - {fileID: 5291311235726897313, guid: a4bceaa2d0112c549899a78431a1ec0c, type: 3}
+  - {fileID: 5291311235726897313, guid: 5d8b510c67637fd47bbcdac830d50498, type: 3}
+  response: 
+  longDescriptedText: 
 --- !u!114 &2691552503819061754
 MonoBehaviour:
   m_ObjectHideFlags: 0

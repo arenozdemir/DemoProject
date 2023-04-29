@@ -10,6 +10,7 @@ public class DialogueButton : MonoBehaviour
     public DialogueButton[] children;
     public string response;
     public string longDescriptedText;
+    
     void Start()
     {
         GetComponent<Button>().onClick.AddListener(SelectButton);
@@ -18,6 +19,14 @@ public class DialogueButton : MonoBehaviour
     void SelectButton()
     {
         DialogueManager.Instance.SelectDialogue(this);
+        if (children.Length == 0)
+        {
+            DialogueManager.Instance.HideInTime(2.5f);
+        }
+    }
+    void HideFrame()
+    {
+        
     }
 
     
