@@ -57,7 +57,7 @@ public class PlayerScript : ObserverManager
         {
             GetComponent<Animator>().SetBool("isWalking", true);
             playerNavMeshAgent.SetDestination(hit.point);
-            destination = playerNavMeshAgent.pathEndPosition;
+            destination = hit.point;
         }
         else if (Vector3.Distance(transform.position,destination) <= .5f)
         {

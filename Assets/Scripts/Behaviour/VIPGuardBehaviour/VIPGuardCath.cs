@@ -26,6 +26,7 @@ public class VIPGuardCath : Leaf
         if (!isbeginned)
         {
             behaviour = GetComponentInParent<GuardBehaviour>();
+            animator.SetBool("isWalking",true);
             isbeginned = true;
         }
     }
