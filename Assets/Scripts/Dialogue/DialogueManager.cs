@@ -26,12 +26,26 @@ public class DialogueManager : MonoBehaviour
     {
         UIParent.SetActive(false);
     }
+    bool isGenerated;
     private void Update() {
         if (isWorking)
+        {
             timer += Time.deltaTime;
+            if(timer >= 0.9f && !isGenerated)
+             { 
+                 // GenerateButtons();
+                  isGenerated = true;
+             }
+        }
+            
         else
+        {
+            if(timer<= 0.1f)
+            {
+                HideResponse();
+            }
             timer -= Time.deltaTime;
-        
+        }
         timer = Mathf.Clamp(timer, 0, 1);
         blackFrame.transform.localScale = new Vector3(1,Mathf.Lerp(14,8.3f,timer),1);
     }
@@ -50,7 +64,7 @@ public class DialogueManager : MonoBehaviour
        // currentText.text = dialogue.response;
        // GenerateButtons();
        Invoke("DeleteButtons",0.5f);
-       StartCoroutine(DialogueRoutine(2f));
+       StartCoroutine(DialogueRoutine(1f));
     }
     void ShowLongText()
     {
@@ -77,8 +91,8 @@ public class DialogueManager : MonoBehaviour
         ShowLongText();
         yield return new WaitForSeconds(waitTİme);
         ShowResponse();
-        yield return new WaitForSeconds(2f);
-        HideResponse();
+        yield return new WaitForSeconds(.75f);
+        //HideResponse();
         GenerateButtons();
         
     }
